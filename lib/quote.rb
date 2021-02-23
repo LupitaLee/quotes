@@ -1,0 +1,4 @@
+
+class QuoteFinder::Quote
+
+end
