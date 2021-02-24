@@ -2,4 +2,11 @@
 
 require_relative '../config/environment'
 
- QuoteFinder::API.new.get_quote
+ API.new.get_quote
+
+
+
+ CLI.new.run
+# binding.pry
+ 
+
