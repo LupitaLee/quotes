@@ -3,11 +3,9 @@
 class CLI
     def run
         greeting
-        # selects_by_author
         API.new.get_quote #data from api
-        # choose_a_quote
         selects_by_name
-       
+    
     end
     
     def greeting
@@ -15,19 +13,10 @@ class CLI
         puts "welcome to Quotes \n "
     end
 
-    # def choose_a_quote
-    #     puts "- choose by Author -" 
-    #     Quote.all.collect do |quote, index|
-    #         # binding.pry
-    #         puts "#{quote.quoteAuthor}"
-    #     end
-        
-    # end
-
     def display
         Quote.all.collect do |quote|
             quote.quoteAuthor
-        end
+        end.sort
 
     end
 
@@ -36,13 +25,29 @@ class CLI
         prompt = TTY::Prompt.new  #gem
         input = prompt.select("choose an Author \n ", display, per_page: 40)  #what the user selected  author store in the local variable input
        quote = Quote.find_by_name(input)
-    #    binding.pry
        display_quote(quote)
+       input2 = nil
+       while input2 != "Exit"
+            input2 = prompt.select("choose diferent Author \n ", %w(display Exit))
+            case input2
+            when "display"
+                display
+            when "Exit"
+                exit
+            end
+           
+                
+       end
+
     end
 
     def display_quote(input)
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
         puts "By #{input.quoteAuthor} : #{input.quoteText} \n "
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "
+    end
+
+    def exit
+        puts "Thank you for reading Quotes, Goodbye!"
     end
 end

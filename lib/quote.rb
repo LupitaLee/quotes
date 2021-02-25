@@ -18,5 +18,9 @@ class Quote
         self.all.find {|quote| quote.quoteAuthor == author} 
         # binding.pry
     end
+
+    def save
+        @@all.save
+    end 
 end
 
