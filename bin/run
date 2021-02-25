@@ -2,7 +2,7 @@
 
 require_relative '../config/environment'
 
- API.new.get_quote
+#  API.new.get_quote
 
 
 
