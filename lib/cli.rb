@@ -10,18 +10,19 @@ class CLI
     end
 
     def user_name
-        puts "Enter your name: \n "
-        name = gets.chomp  #chomp gets rid of any line or space cx inputs 
+        puts ""
+        puts "What is your name? \n "
+        name = gets.chomp   #chomp gets rid of any line or space cx inputs 
         puts ""
         puts ("Hello #{name}!")
     end
     
     def greeting
         puts " \n "
-        puts "welcome to Quotes \n "
+        puts "Welcome to Quotes \n "
     end
 
-    def display
+    def authors
         Quote.all.collect do |quote|
             quote.quoteAuthor
         end.sort
@@ -30,33 +31,32 @@ class CLI
 
 
     def selects_by_name
-        prompt = TTY::Prompt.new  #gem
-        input = prompt.select("choose an Author \n ", display, per_page: 40)  #what the user selected  author store in the local variable input
+        # prompt = TTY::Prompt.new  #gem
+        prompt = TTY::Prompt.new(active_color: :magenta) #gem
+
+        input = prompt.select("choose an Author \n ", authors, per_page: 40)  #what the user selected  author store in the local variable input
        quote = Quote.find_by_name(input)
        display_quote(quote)
        input2 = nil
-       while input2 != "Exit"
-            input2 = prompt.select("Choose diferent Author \n ", %w(display Exit))
-            case input2
-            when "display"
-                display
-            when "Exit"
-                exit
-            end
-           
-                
-       end
-
+       input2 = prompt.select("Choose diferent Author \n ", %w(Authors Exit))
+       if input2 != "Exit"
+        selects_by_name    #recursion -called inside itself
+       else
+        exit
+        end
     end
 
     def display_quote(input)
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
         puts " \" #{input.quoteText} \" - #{input.quoteAuthor} \n "
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~  "
     end
 
     def exit
-        puts "Thank you for reading Quotes, Goodbye!"
-    #     puts "Thank you #{name} for reading Quotes, Goodbye!"
+        puts ""
+        puts "Thank you for reading Quotes, Goodbye! \n "
+        # puts "Thank you #{name} for reading Quotes, Goodbye!"
     end
 end
+
+
