@@ -11,9 +11,9 @@ class CLI
 
     def user_name
         puts "Enter your name: \n "
-        name = gets
+        name = gets.chomp
         puts ""
-        puts ("Hello " + name)
+        puts ("Hello " + name + "!")
     end
     
     def greeting
