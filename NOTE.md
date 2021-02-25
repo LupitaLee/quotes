@@ -29,3 +29,7 @@ SHOW ALL COLLECTIONS OF OBJECTS
    ### CLI -> shows inputs or data in terminal
    ### API ->  Get data 
    ### STORE DATA -> Object ->  QUOTES
+
+   Who is your User?
+What is their pain point?
+How do they use our solution to overcome this problem?
