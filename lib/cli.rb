@@ -11,9 +11,9 @@ class CLI
 
     def user_name
         puts "Enter your name: \n "
-        name = gets.chomp
+        name = gets.chomp  #chomp gets rid of any line or space cx inputs 
         puts ""
-        puts ("Hello " + name + "!")
+        puts ("Hello #{name}!")
     end
     
     def greeting
@@ -51,12 +51,12 @@ class CLI
 
     def display_quote(input)
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
-        puts "By #{input.quoteAuthor} : #{input.quoteText} \n "
+        puts " \" #{input.quoteText} \" - #{input.quoteAuthor} \n "
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ "
     end
 
     def exit
         puts "Thank you for reading Quotes, Goodbye!"
-        # puts "Thank you #{name} for reading Quotes, Goodbye!"
+    #     puts "Thank you #{name} for reading Quotes, Goodbye!"
     end
 end
