@@ -2,10 +2,18 @@
 #get inputs and it will show strings or disply 
 class CLI
     def run
+        user_name
         greeting
         API.new.get_quote #data from api
         selects_by_name
     
+    end
+
+    def user_name
+        puts "Enter your name: \n "
+        name = gets
+        puts ""
+        puts ("Hello " + name)
     end
     
     def greeting
@@ -28,7 +36,7 @@ class CLI
        display_quote(quote)
        input2 = nil
        while input2 != "Exit"
-            input2 = prompt.select("choose diferent Author \n ", %w(display Exit))
+            input2 = prompt.select("Choose diferent Author \n ", %w(display Exit))
             case input2
             when "display"
                 display
@@ -49,5 +57,6 @@ class CLI
 
     def exit
         puts "Thank you for reading Quotes, Goodbye!"
+        # puts "Thank you #{name} for reading Quotes, Goodbye!"
     end
 end
