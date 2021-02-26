@@ -1,5 +1,6 @@
 
 require "tty-prompt"
+require 'colorize'
 require 'net/http'
 require 'open-uri'
 require 'json'
