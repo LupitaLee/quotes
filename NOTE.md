@@ -19,7 +19,7 @@ Use good OO design patterns. You should be creating a collection of objects, not
  - https://quote-garden.herokuapp.com/api/v3/quotes?limit=40  # list of 40 quotes 
 
  list author
- genre
+
 
  HAVE FEW QUOTES - 
  USER SAVE AND SEE THE ONES THEY SEARCHED

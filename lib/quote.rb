@@ -19,8 +19,5 @@ class Quote
         # binding.pry
     end
 
-    def save
-        @@all.save
-    end 
 end
 

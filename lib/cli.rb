@@ -25,20 +25,20 @@ class CLI
     def authors
         Quote.all.collect do |quote|
             quote.quoteAuthor
-        end.sort
+        end.sort.uniq
 
     end
 
 
     def selects_by_name
-        # prompt = TTY::Prompt.new  #gem
+       
         prompt = TTY::Prompt.new(active_color: :magenta) #gem
 
         input = prompt.select("choose an Author \n ", authors, per_page: 40)  #what the user selected  author store in the local variable input
-       quote = Quote.find_by_name(input)
+       quote = Quote.find_by_name(input) # using my find by name method 
        display_quote(quote)
        input2 = nil
-       input2 = prompt.select("Do you want to choose different Author? \n ", %w(Authors Exit))
+       input2 = prompt.select("Do you want to choose a different Author? \n ", %w(Authors Exit))
        if input2 != "Exit"
         selects_by_name    #recursion -called inside itself
        else
@@ -50,7 +50,7 @@ class CLI
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
         puts " \" #{input.quoteText} \" - #{input.quoteAuthor} \n "
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
-        puts "How much do you liked this Quote?  \n"
+        puts "How much do you like this Quote?  \n"
         prompt = TTY::Prompt.new(active_color: :magenta)
         volume = prompt.slider("Like", max: 10, default: 7, help: "(Move arrows left and right to set value)", show_help: :always)
         
