@@ -13,16 +13,16 @@ class CLI
 
     def user_name
         puts ""
-        puts "What is your name? \n ".colorize(:magenta)
-        @name = gets.chomp.colorize(:blue)   #chomp gets rid of any line or space cx inputs 
+        puts "What is your name? \n "
+        @name = gets.chomp.colorize(:cyan)   #chomp gets rid of any line or space cx inputs 
         puts ""
-        puts ("Hello #{@name}!").colorize(:blue)
+        puts ("Hello #{@name}!").colorize(:cyan)
         sleep(1)
     end
     
     def greeting
         puts " \n "
-        puts "Welcome to Quotes \n ".colorize(:light_green)
+        puts "Welcome to Quotes \n ".colorize(:magenta)
     end
 
     def authors
@@ -37,7 +37,7 @@ class CLI
        
         prompt = TTY::Prompt.new(active_color: :magenta) #gem
 
-        input = prompt.select("Choose an Author \n ", authors, per_page: 40)  #what the user selected  author store in the local variable input
+        input = prompt.select("Choose an Author \n ".colorize(:light_green), authors, per_page: 40)  #what the user selected  author store in the local variable input
        quote = Quote.find_by_name(input) # using my find by name method 
        display_quote(quote)
        input2 = nil
@@ -50,12 +50,14 @@ class CLI
     end
 
     def display_quote(input)
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
+        puts ""
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n ".colorize(:light_magenta)
         puts " \" #{input.quoteText} \" - #{input.quoteAuthor} \n ".colorize(:light_green)
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~ \n ".colorize(:light_magenta)
         puts "How much do you like this Quote?  \n".colorize(:light_magenta)
         prompt = TTY::Prompt.new(active_color: :magenta)
         volume = prompt.slider("Like", max: 10, default: 7, help: "(Move arrows left and right to set value)", show_help: :always)
+        puts ""
         
     end
 
@@ -63,22 +65,37 @@ class CLI
         puts ""
         puts ""
         # puts "Thank you for reading Quotes, Goodbye! \n ".colorize(:light_yellow)
-        puts "Thank you #{@name} for reading Quotes, Goodbye! \n "
+        puts "Thank you #{@name} for reading Quotes, Goodbye! ♡ ♡ ♡\n "
     end
+
+
     def pic_one
         puts"
-    ,,,                      ,,,
-             {{{}}    ,,,             {{{}}    ,,,
-          ,,, ~Y~    {{{}},,,      ,,, ~Y~    {{{}},,,
-         {{}}} |/,,,  ~Y~{{}}}    {{}}} |/,,,  ~Y~{{}}}
-          ~Y~ \|{{}}}/\|/ ~Y~  ,,, ~Y~ \|{{}}}/\|/ ~Y~  ,,,
-          \|/ \|/~Y~  \|,,,|/ {{}}}\|/ \|/~Y~  \|,,,|/ {{}}}
-          \|/ \|/\|/  \{{{}}/  ~Y~ \|/ \|/\|/  \{{{}}/  ~Y~
-          \|/\\|/\|/ \\|~Y~//  \|/ \|/\\|/\|/ \\|~Y~//  \|/
-          \|//\|/\|/,\\|/|/|// \|/ \|//\|/\|/,\\|/|/|// \|/
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                                                                                                     
+        ./oh/                                                                                 
+        `/yNhho/ ```..`                                 `:.`                                     
+       -hmNNd/.:shdNNNmy/`                             `hNNds`                                   
+     .ohdmmo/yo/:.`` `:yhy-                            oNNMMh                                    
+    -syhdhs/-`         `ymm                    ````....NMMMM:.`````````                          
+   :dmmms.`             sNN`                   ++osssshMMMMNoo+///+//+:                          
+  /mmmmh`              .mMm                           sMMMMh             ````                    
+ -mmmmh.               yMMo                           hMMMN/         `:ohdhhys/                  
+ ydddd-               +NMN.``                 ``      hmmmd`       .omNNy:.`.+m`     ...`        
+`dddds               :NMN+ ohs    `        `-+so      shhho       -yhds.    `+o    -ss:-/o.      
+`dmmm+              :mMN+ `mNy   .os`     -ooss+.`   `ssss-      .+syy--.--:/-    -hh-  +y-      
+.mmmm/            `ohdd/  :yy.   ohh`   `/ssoo-``+`  :ssso`      +syy-...``      `+yy+` -.       
+`mNNmy`          -oyhh+   +ds   +hho   .oyhy:o`  /:.:+sss+     `/sss+           -/-yhhy/`        
+ :mmmms.      .:oysyo-    /mo .+ymd-  /o/mdd`-/:-yo` ohyy:    -//yss/         .:.  .yhhdo`       
+  +dmmmds+:/ohmddho-`     `++:-.oho .o/`.hhy`   :y.  +Nmd-  ./- .shh+       .-.`o/  `+yys/       
+   .odddmmmmNNmdh/`             -yo+/`   -oys//oo.   .ddd-`/:`   .sdd+-.--::-  -h:   `syys       
+ .+oshdddddho:.`                 ```   `  ``.-.`      -oyo/.       `.::::.`    :y`    :yy+       
+ .yyyyyhddddh+`                                        ```                     `o:   .sdo`       
+  ```` `.:/sddh/                                `                                -::++/`         
+            `:shs:`               `    `                                                         
+               `-/+:           ````        ````                                                ".colorize(:light_magenta)
+        
         
          
       end
+      
 end
-
