@@ -38,7 +38,7 @@ class CLI
        quote = Quote.find_by_name(input)
        display_quote(quote)
        input2 = nil
-       input2 = prompt.select("Choose diferent Author \n ", %w(Authors Exit))
+       input2 = prompt.select("Do you want to choose different Author? \n ", %w(Authors Exit))
        if input2 != "Exit"
         selects_by_name    #recursion -called inside itself
        else
@@ -49,7 +49,11 @@ class CLI
     def display_quote(input)
         puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
         puts " \" #{input.quoteText} \" - #{input.quoteAuthor} \n "
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~  "
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~ \n "
+        puts "How much do you liked this Quote?  \n"
+        prompt = TTY::Prompt.new(active_color: :magenta)
+        volume = prompt.slider("Like", max: 10, default: 7, help: "(Move arrows left and right to set value)", show_help: :always)
+        
     end
 
     def exit
@@ -58,5 +62,4 @@ class CLI
         # puts "Thank you #{name} for reading Quotes, Goodbye!"
     end
 end
-
 
