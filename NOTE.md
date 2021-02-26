@@ -22,8 +22,9 @@ Use good OO design patterns. You should be creating a collection of objects, not
 
 
  HAVE FEW QUOTES - 
- USER SAVE AND SEE THE ONES THEY SEARCHED
 SHOW ALL COLLECTIONS OF OBJECTS
+USER SELECT QUOTE AND ANOTHER 
+EXIT
    
 
    ### CLI -> shows inputs or data in terminal
