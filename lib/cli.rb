@@ -1,5 +1,5 @@
 
-#get inputs and it will show strings or disply 
+
 class CLI
     def run
         pic_one
@@ -26,9 +26,10 @@ class CLI
     end
 
     def authors
-        Quote.all.collect do |quote|
-            quote.quoteAuthor
-        end.sort.uniq
+        Quote.all.collect {|quote| quote.quoteAuthor}.sort.uniq
+        # Quote.all.collect do |quote|
+        #     quote.quoteAuthor
+        # end.sort.uniq
 
     end
 
@@ -51,9 +52,9 @@ class CLI
 
     def display_quote(input)
         puts ""
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n ".colorize(:light_magenta)
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ \n ".colorize(:light_magenta)
         puts " \" #{input.quoteText} \" - #{input.quoteAuthor} \n ".colorize(:light_green)
-        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~ \n ".colorize(:light_magenta)
+        puts "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~\n ".colorize(:light_magenta)
         puts "How much do you like this Quote?  \n".colorize(:light_magenta)
         prompt = TTY::Prompt.new(active_color: :magenta)
         volume = prompt.slider("Like", max: 10, default: 7, help: "(Move arrows left and right to set value)", show_help: :always)
@@ -64,8 +65,7 @@ class CLI
     def exit
         puts ""
         puts ""
-        # puts "Thank you for reading Quotes, Goodbye! \n ".colorize(:light_yellow)
-        puts "Thank you #{@name} for reading Quotes, Goodbye! ♡ ♡ ♡\n "
+        puts "Thank you #{@name} for reading Quotes, Goodbye!    ♡ ♡ ♡\n "
     end
 
 
