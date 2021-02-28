@@ -13,6 +13,5 @@ class API
         quote_array.each do |quote_hash|   #iterate over each item of the array 
             Quote.new(quote_hash)  # makes new obect with their data 
         end
-        # binding.pry
     end
 end                                            

@@ -7,7 +7,6 @@ class Quote
         self.send("#{key}=", value)
          end
          @@all << self
-        #  binding.pry
     end 
 
     def self.all
@@ -16,7 +15,6 @@ class Quote
 
     def self.find_by_name(author)
         self.all.find {|quote| quote.quoteAuthor == author} 
-        # binding.pry
     end
 
 end
