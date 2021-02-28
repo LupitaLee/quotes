@@ -27,10 +27,6 @@ class CLI
 
     def authors
         Quote.all.collect {|quote| quote.quoteAuthor}.sort.uniq
-        # Quote.all.collect do |quote|
-        #     quote.quoteAuthor
-        # end.sort.uniq
-
     end
 
 
