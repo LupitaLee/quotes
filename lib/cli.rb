@@ -5,8 +5,6 @@ class CLI
         pic_one
         user_name
         greeting
-        sleep(1)
-        API.new.get_quote #data from api
         selects_by_name
     
     end
@@ -14,7 +12,7 @@ class CLI
     def user_name
         puts ""
         puts "What is your name? \n "
-        @name = gets.chomp.colorize(:cyan)   #chomp gets rid of any line or space cx inputs 
+        @name = gets.chomp.colorize(:cyan)  
         puts ""
         puts ("Hello #{@name}!").colorize(:cyan)
         sleep(1)
@@ -23,6 +21,7 @@ class CLI
     def greeting
         puts " \n "
         puts "Welcome to Quotes \n ".colorize(:magenta)
+        sleep(1)
     end
 
     def authors
@@ -32,15 +31,15 @@ class CLI
 
     def selects_by_name
        
-        prompt = TTY::Prompt.new(active_color: :magenta) #gem
+        prompt = TTY::Prompt.new(active_color: :magenta) 
 
-        input = prompt.select("Choose an Author \n ".colorize(:light_green), authors, per_page: 40)  #what the user selected  author store in the local variable input
-       quote = Quote.find_by_name(input) # using my find by name method 
+        input = prompt.select("Choose an Author \n ".colorize(:light_green), authors, per_page: 40) 
+       quote = Quote.find_by_name(input) 
        display_quote(quote)
        input2 = nil
        input2 = prompt.select("Do you want to choose a different Author? \n ", %w(Authors Exit))
        if input2 != "Exit"
-        selects_by_name    #recursion -called inside itself
+        selects_by_name  
        else
         exit
         end

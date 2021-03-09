@@ -1,12 +1,12 @@
-# grab the data from the api and this is where the data will be stored 
+
 class Quote
     @@all =[]
-    def initialize(quote_hash)    #metaprograming
+    def initialize(quote_hash)    
         quote_hash.each do |key, value| 
-        self.class.attr_accessor(key)
-        self.send("#{key}=", value)
-         end
-         @@all << self
+        self.class.attr_accessor(key)   #createing a setter 
+        self.send("#{key}=", value)     
+        end
+        @@all << self
     end 
 
     def self.all
