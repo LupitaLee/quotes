@@ -3,7 +3,7 @@ class Quote
     @@all =[]
     def initialize(quote_hash)    
         quote_hash.each do |key, value| 
-        self.class.attr_accessor(key)   #createing a setter 
+        self.class.attr_accessor(key)   
         self.send("#{key}=", value)     
         end
         @@all << self
